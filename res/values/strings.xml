@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="intro">This is a Widget to display the latest 3 Hourly Planetary(estimated Ap) K Indices from http://www.swpc.noaa.gov/ftpdir/lists/geomag/AK.txt to e.g. help UAS Pilots to be aware of possible GPS-Problems.\nIf you do not know what a widget is you might have a look at this Video:  http://www.youtube.com/watch?v=ZMsqSQzV6nw \nThanks to http://mikrokopter.de for the impulse, http://www.swpc.noaa.gov for the Data and Clemens -Nebukad- Wronski for the Grapics! </string>
+    <string name="app_name">Solar Activity Monitor</string>
+    <string name="solar_activity_as_text">Solar Activity as Text</string>
+    <string name="solar_activity_as_icon">Solar Activity as Icon</string>
+    <string name="icon">icon</string>
+</resources>
