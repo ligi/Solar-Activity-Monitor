@@ -13,7 +13,7 @@ import android.util.Log;
 
 /**
  * 
- * @author ligi
+ * 2012 Marcus -ligi- Bueschleb
  *
  */
 public class BaseUpdateTask extends AsyncTask<Void, Void, Integer> {
