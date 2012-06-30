@@ -10,7 +10,7 @@
         android:id="@+id/kp_number_tv"
         android:layout_width="72dp"
         android:layout_height="72dp"
-        android:text="-"
+        android:text="@string/nothing"
         android:shadowColor="#FF000000"
         android:shadowDx="2"
         android:shadowDy="2"
