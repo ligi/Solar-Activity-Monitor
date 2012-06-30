@@ -16,7 +16,7 @@ public class SAMTextWidget extends SAMBaseWidget {
 
 		public void update(Integer val,RemoteViews remoteViews) {
 			if ((val==null)||(val<0))
-				remoteViews.setTextViewText( R.id.kp_number_tv, " -");
+				remoteViews.setTextViewText( R.id.kp_number_tv, "-");
 			else {
 				remoteViews.setTextViewText( R.id.kp_number_tv, "" + val);
 				if (val<4)
