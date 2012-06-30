@@ -3,6 +3,8 @@ package org.ligi.solar_activity_monitor;
 import org.ligi.solar_activity_monitor.R;
 
 import android.content.ComponentName;
+import android.content.Context;
+import android.widget.RemoteViews;
 
 /**
  * 
@@ -12,7 +14,7 @@ import android.content.ComponentName;
 public class SAMIconWidget extends SAMBaseWidget {
 
 	@Override
-	public void update(Integer val) {
+	public void update(Integer val,RemoteViews remoteViews) {
 		if ((val==null)||(val<0))
 			remoteViews.setImageViewResource( R.id.kp_number_ico, android.R.drawable.ic_menu_close_clear_cancel);
 		else {
@@ -24,17 +26,10 @@ public class SAMIconWidget extends SAMBaseWidget {
 				remoteViews.setImageViewResource( R.id.kp_number_ico, R.drawable.storm);
 		}	
 
-			/*
-		Date now=new Date(System.currentTimeMillis());
-        SimpleDateFormat dt1 = new SimpleDateFormat("yyyyy-mm-dd hh:mm:ss");
-        edit.putString("updates",sp.getString("updates","")+dt1.format(now)+"->"+ result +";");
-        edit.commit();
-			 */
-		appWidgetManager.updateAppWidget( watchWidget, remoteViews );
 	}
 
 	@Override
-	public ComponentName getComponent() {
+	public ComponentName getComponent(Context ctx) {
 		return new ComponentName( ctx, SAMIconWidget.class );
 	}
 
@@ -42,6 +37,5 @@ public class SAMIconWidget extends SAMBaseWidget {
 	public int getLayout() {
 		return R.layout.widget_icon;
 	}
-
 	
 }
