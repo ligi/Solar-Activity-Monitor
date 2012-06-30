@@ -9,7 +9,8 @@
         android:targetSdkVersion="15" />
 
     <uses-permission android:name="android.permission.INTERNET" />
-    
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+     
     <uses-feature android:name="android.hardware.touchscreen" android:required="false"/>
     
     <application
@@ -18,11 +19,17 @@
         <receiver
             android:name=".SAMTextWidget"
             android:icon="@drawable/number"
-            android:label="@string/solar_activity_as_text" >
+            android:label="@string/solar_activity_as_text" 
+            android:exported="false"
+            >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
 
+            <intent-filter>
+                    <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+            
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_text" />
@@ -31,11 +38,17 @@
         <receiver
             android:name=".SAMIconWidget"
             android:icon="@drawable/quiet"
-            android:label="@string/solar_activity_as_icon" >
+            android:label="@string/solar_activity_as_icon" 
+            android:exported="false"
+            >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
 
+            <intent-filter>
+                    <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+                
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_icon" />
