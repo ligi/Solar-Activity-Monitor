@@ -43,6 +43,4 @@ public class ConfigureActivity extends Activity {
 		setContentView(R.layout.main);
 	}
 
-		
-
 }
