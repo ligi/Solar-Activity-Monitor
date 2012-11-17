@@ -5,6 +5,8 @@
     android:updatePeriodMillis="7200000"
     android:previewImage="@drawable/number"
     android:initialLayout="@layout/widget_text"
-    android:resizeMode="none">
+    android:resizeMode="none"
+    android:widgetCategory="keyguard|home_screen"
+    >
   </appwidget-provider>
     
