@@ -7,7 +7,6 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.util.Log;
 import android.widget.RemoteViews;
 
 /**
@@ -37,14 +36,13 @@ public abstract class SAMBaseWidget extends AppWidgetProvider {
 
 		@Override
 		protected void onPostExecute(Integer result) {
-			Log.i("SAM","SAU " + result);
 			
 			ComponentName watchWidget = getComponent(ctx);
 			AppWidgetManager appWidgetManager=AppWidgetManager.getInstance(ctx);
 			
 			RemoteViews remoteViews = new RemoteViews( ctx.getPackageName(), getLayout() );
 			update(result,remoteViews);
-			appWidgetManager.updateAppWidget( watchWidget, remoteViews );
+			
 			
 			String url = "http://www.n3kl.org/sun/images/noaa_kp_3d.gif";
 			Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -52,7 +50,9 @@ public abstract class SAMBaseWidget extends AppWidgetProvider {
 			
 	        PendingIntent pendingIntent = PendingIntent.getActivity(ctx, 0, intent, 0);
 	        remoteViews.setOnClickPendingIntent(R.id.widget_layout, pendingIntent);
-			super.onPostExecute(result);
+			
+	        appWidgetManager.updateAppWidget( watchWidget, remoteViews );
+	        super.onPostExecute(result);
 		}
 	}
 
