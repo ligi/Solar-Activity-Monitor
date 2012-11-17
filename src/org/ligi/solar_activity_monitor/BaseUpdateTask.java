@@ -9,7 +9,6 @@ import java.net.URL;
 import java.net.URLConnection;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 /**
  * 
@@ -30,7 +29,6 @@ public class BaseUpdateTask extends AsyncTask<Void, Void, Integer> {
 
 				if (line.startsWith("Planetary")) {
 
-					Log.i("SAM",line);
 					line=line.substring(line.indexOf(")")+1);
 					String[] numbers=line.split(" ");
 					for (String number:numbers) {
