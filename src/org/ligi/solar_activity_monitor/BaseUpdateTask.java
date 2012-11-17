@@ -11,6 +11,7 @@ import java.net.URLConnection;
 import android.os.AsyncTask;
 
 /**
+ * task to fetch the current Planetary Ap Value
  * 
  * 2012 Marcus -ligi- Bueschleb
  *
@@ -18,6 +19,9 @@ import android.os.AsyncTask;
 public class BaseUpdateTask extends AsyncTask<Void, Void, Integer> {
 
 	@Override
+	/**
+	 * returns null if we have not found our Planetary Ap Value or the value otherwise
+	 */
 	protected Integer doInBackground(Void... params) {
 		try {
 			String act_ak=downloadURL2String(new URL("http://www.swpc.noaa.gov/ftpdir/lists/geomag/AK.txt"));
@@ -27,17 +31,26 @@ public class BaseUpdateTask extends AsyncTask<Void, Void, Integer> {
 			String[] lines=act_ak.split("\n");
 			for (String line:lines) {
 
+				// this is the Line we are looking for
+				// example Planetary(estimated Ap)      5     1     2     1     1     1     2     2     1
 				if (line.startsWith("Planetary")) {
-
+					
+					// cut away the description 
 					line=line.substring(line.indexOf(")")+1);
+					
+					// we search for the current value by looking at all numbers
+					// and finding the last value that is not -1 ( aka NA )
+
 					String[] numbers=line.split(" ");
 					for (String number:numbers) {
 						try {
 							int act_num=Integer.parseInt(number);
 							if (act_num==-1) {
+								// yay we found our number
 								return last_number;
 
 							} else {
+								// not finished -  we have to search further
 								last_number=act_num;
 							}
 						} catch (Exception e) { }
