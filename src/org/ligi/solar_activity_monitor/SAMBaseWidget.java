@@ -6,6 +6,7 @@ import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.widget.RemoteViews;
 
@@ -16,14 +17,30 @@ import android.widget.RemoteViews;
  */
 public abstract class SAMBaseWidget extends AppWidgetProvider {
 
+	private Context context;
+	private static final int LAST_GOOD_TIMEOUT=60*60*1000;//1h
 	@Override
 	public void onUpdate( Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds ) {
-		new UpdateTask(context).execute();
+		start(context);
 	}
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
-		new UpdateTask(context).execute();
+		start(context);
+	}
+	
+	private void start(Context context) {
+		this.context=context;
+		long last_timestamp=getSharedPrefs().getLong("last_fetch", -1);
+		
+		if (last_timestamp==-1 || Math.abs(System.currentTimeMillis()-last_timestamp)>LAST_GOOD_TIMEOUT) // 1h
+			new UpdateTask(context).execute();
+		
+		
+	}
+	
+	private SharedPreferences getSharedPrefs() {
+		return context.getSharedPreferences("prefs", Context.MODE_PRIVATE);
 	}
 	
 	private class UpdateTask extends BaseUpdateTask {
@@ -33,9 +50,13 @@ public abstract class SAMBaseWidget extends AppWidgetProvider {
 		public UpdateTask(Context ctx) {
 			this.ctx=ctx;
 		}
+		
 
 		@Override
 		protected void onPostExecute(Integer result) {
+			
+			if (result!=null)
+				getSharedPrefs().edit().putLong("last_fetch", System.currentTimeMillis()).commit();
 			
 			ComponentName watchWidget = getComponent(ctx);
 			AppWidgetManager appWidgetManager=AppWidgetManager.getInstance(ctx);
