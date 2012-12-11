@@ -34,13 +34,13 @@ public class BaseUpdateTask extends AsyncTask<Void, Void, Integer> {
 			// OK we try the other method - was worth a try
 		}
 		
-		for (int attempt=0;attempt<3;attempt++)
+		for (int attempt=0;attempt<6;attempt++)
 		// fallback 
 		try {
 			String act_ak=downloadURL2String(new URL("http://www.swpc.noaa.gov/ftpdir/lists/geomag/AK.txt"));
 			if (act_ak!=null)
 				return PlanetaryApParser.parse(act_ak);
-			Thread.sleep(1000*attempt);
+			Thread.sleep(1000*attempt*attempt);
 		} catch (Exception e) {
 		}
 
