@@ -20,49 +20,29 @@ public class BaseUpdateTask extends AsyncTask<Void, Void, Integer> {
 
 	@Override
 	/**
-	 * returns null if we have not found our Planetary Ap Value or the value otherwise
+	 *  @returns  the most recent val or -1 if not forund or null on error
 	 */
 	protected Integer doInBackground(Void... params) {
+		
+		for (int attempt=0;attempt<3;attempt++)
+		// try to read the cached/parsed version
+		try {
+			String parsed_str=downloadURL2String(new URL("http://mk-android.appspot.com/checkSolar"));
+			if (parsed_str!=null)
+				return Integer.parseInt(parsed_str);
+			Thread.sleep(1000*attempt);
+		} catch (Exception e){
+			// OK we try the other method - was worth a try
+		}
+		
+		for (int attempt=0;attempt<3;attempt++)
+		// fallback 
 		try {
 			String act_ak=downloadURL2String(new URL("http://www.swpc.noaa.gov/ftpdir/lists/geomag/AK.txt"));
-			if (act_ak==null)
-				return null;
-			int last_number=-2;
-			String[] lines=act_ak.split("\n");
-			for (String line:lines) {
-
-				// this is the Line we are looking for
-				// example Planetary(estimated Ap)      5     1     2     1     1     1     2     2     1
-				if (line.startsWith("Planetary")) {
-					
-					// cut away the description 
-					line=line.substring(line.indexOf(")")+1);
-					
-					// we search for the current value by looking at all numbers
-					// and finding the last value that is not -1 ( aka NA )
-
-					String[] numbers=line.split(" ");
-					for (String number:numbers) {
-						try {
-							int act_num=Integer.parseInt(number);
-							if (act_num==-1) {
-								// yay we found our number
-								return last_number;
-
-							} else {
-								// not finished -  we have to search further
-								last_number=act_num;
-							}
-						} catch (Exception e) { }
-					}
-
-				}
-
-
-			}
-
-
-		} catch (MalformedURLException e) {
+			if (act_ak!=null)
+				return PlanetaryApParser.parse(act_ak);
+			Thread.sleep(1000*attempt);
+		} catch (Exception e) {
 		}
 
 		return null;
