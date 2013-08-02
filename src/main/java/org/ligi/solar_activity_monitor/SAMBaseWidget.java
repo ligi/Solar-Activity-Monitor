@@ -55,7 +55,9 @@ public abstract class SAMBaseWidget extends AppWidgetProvider {
 		@Override
 		protected void onPostExecute(Integer result) {
 			
-			if (result!=null)
+			if ((result==null)||result<0)
+				getSharedPrefs().edit().putLong("last_fetch", -1).commit();
+			else
 				getSharedPrefs().edit().putLong("last_fetch", System.currentTimeMillis()).commit();
 			
 			ComponentName watchWidget = getComponent(ctx);
