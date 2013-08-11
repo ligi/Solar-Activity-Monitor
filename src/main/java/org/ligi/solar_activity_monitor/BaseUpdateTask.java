@@ -24,8 +24,9 @@ public class BaseUpdateTask extends AsyncTask<Void, Void, Integer> {
             // try to read the cached/parsed version
             try {
                 String parsed_str = downloadURL2String(new URL("http://mk-android.appspot.com/checkSolar"));
-                if (parsed_str != null)
+                if (parsed_str != null) {
                     return Integer.parseInt(parsed_str);
+                }
                 Thread.sleep(1000 * attempt);
             } catch (Exception e) {
                 // OK we try the other method - was worth a try
@@ -35,8 +36,9 @@ public class BaseUpdateTask extends AsyncTask<Void, Void, Integer> {
             // fallback
             try {
                 String act_ak = downloadURL2String(new URL("http://www.swpc.noaa.gov/ftpdir/lists/geomag/AK.txt"));
-                if (act_ak != null)
+                if (act_ak != null) {
                     return PlanetaryApParser.parse(act_ak);
+                }
                 Thread.sleep(1000 * attempt * attempt);
             } catch (Exception e) {
             }
