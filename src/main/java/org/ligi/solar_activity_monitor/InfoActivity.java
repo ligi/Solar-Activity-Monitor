@@ -9,7 +9,7 @@ import android.widget.RemoteViews;
 /**
  * Activity to show some introduction
  */
-public class ConfigureActivity extends Activity {
+public class InfoActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
