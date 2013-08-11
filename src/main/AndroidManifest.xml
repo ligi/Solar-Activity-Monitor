@@ -1,82 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.ligi.solar_activity_monitor"
-    android:versionCode="10"
-    android:versionName="0.10" >
+          package="org.ligi.solar_activity_monitor"
+          android:versionCode="10"
+          android:versionName="0.10">
 
     <uses-sdk
-        android:minSdkVersion="7"
-        android:targetSdkVersion="17" />
+            android:minSdkVersion="7"
+            android:targetSdkVersion="17"/>
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
 
     <uses-feature
-        android:name="android.hardware.touchscreen"
-        android:required="false" />
+            android:name="android.hardware.touchscreen"
+            android:required="false"/>
 
     <permission
-        android:name="org.ligi.solar_activity_monitor.permission.C2D_MESSAGE"
-        android:protectionLevel="signature" />
+            android:name="org.ligi.solar_activity_monitor.permission.C2D_MESSAGE"
+            android:protectionLevel="signature"/>
 
-    <uses-permission android:name="org.ligi.solar_activity_monitor.permission.C2D_MESSAGE" />
+    <uses-permission android:name="org.ligi.solar_activity_monitor.permission.C2D_MESSAGE"/>
 
     <supports-screens
-        android:anyDensity="true"
-        android:largeScreens="true"
-        android:normalScreens="true"     android:smallScreens="true" />
+            android:anyDensity="true"
+            android:largeScreens="true"
+            android:normalScreens="true"
+            android:smallScreens="true"/>
     <supports-screens/>
 
     <application
-        android:icon="@drawable/icon"
-        android:label="@string/app_name" >
+            android:icon="@drawable/icon"
+            android:label="@string/app_name">
         <receiver
-            android:name=".SAMTextWidget"
-            android:exported="false"
-            android:icon="@drawable/number"
-            android:label="@string/solar_activity_as_text" >
+                android:name=".SAMTextWidget"
+                android:exported="false"
+                android:icon="@drawable/number"
+                android:label="@string/solar_activity_as_text">
             <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
             </intent-filter>
             <intent-filter>
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
             </intent-filter>
 
             <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/widget_text" />
+                    android:name="android.appwidget.provider"
+                    android:resource="@xml/widget_text"/>
         </receiver>
         <receiver
-            android:name=".SAMIconWidget"
-            android:exported="false"
-            android:icon="@drawable/quiet"
-            android:label="@string/solar_activity_as_icon" >
+                android:name=".SAMIconWidget"
+                android:exported="false"
+                android:icon="@drawable/quiet"
+                android:label="@string/solar_activity_as_icon">
             <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
             </intent-filter>
             <intent-filter>
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
             </intent-filter>
 
             <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/widget_icon" />
+                    android:name="android.appwidget.provider"
+                    android:resource="@xml/widget_icon"/>
         </receiver>
 
         <activity
-            android:name=".ConfigureActivity"
-            android:label="@string/app_name" >
+                android:name=".ConfigureActivity"
+                android:label="@string/app_name">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
             <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>
             </intent-filter>
         </activity>
-        <activity android:name=".InfoDialog" >
+        <activity android:name=".InfoDialog">
         </activity>
     </application>
 
