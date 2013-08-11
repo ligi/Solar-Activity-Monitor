@@ -1,6 +1,5 @@
 package org.ligi.solar_activity_monitor;
 
-
 /**
  * Parses the AP.txt file from http://www.swpc.noaa.gov/ftpdir/lists/geomag/AK.txt
  * and extacts an int with the most recent Planetrary Ap Value

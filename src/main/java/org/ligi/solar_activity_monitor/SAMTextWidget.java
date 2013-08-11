@@ -6,24 +6,35 @@ import android.graphics.Color;
 import android.widget.RemoteViews;
 
 /**
- * 2012 Marcus -ligi- Bueschleb
+ * widget showing the recent kp value ( number ) in a stateful color
  */
 public class SAMTextWidget extends SAMBaseWidget {
 
     public void update(Integer val, RemoteViews remoteViews) {
-        if ((val == null) || (val < 0))
+
+        remoteViews.setTextColor(R.id.kp_number_tv, getColorByKpValue(val));
+
+        if ((val == null) || (val < 0)) {
             remoteViews.setTextViewText(R.id.kp_number_tv, "-");
-        else {
-            remoteViews.setTextViewText(R.id.kp_number_tv, "" + val);
-            if (val < 4)
-                remoteViews.setTextColor(R.id.kp_number_tv, Color.GREEN);
-            else if (val == 4)
-                remoteViews.setTextColor(R.id.kp_number_tv, Color.YELLOW);
-            else if (val > 4)
-                remoteViews.setTextColor(R.id.kp_number_tv, Color.RED);
+        } else {
+            remoteViews.setTextViewText(R.id.kp_number_tv, String.valueOf(val));
+        }
+    }
+
+    private int getColorByKpValue(Integer val) {
+        if ((val == null) || (val < 0)) {
+            return Color.GRAY;
         }
 
+        if (val < 4) {
+            return Color.GREEN;
+        }
 
+        if (val == 4) {
+            return Color.YELLOW;
+        }
+
+        return Color.RED; // >4
     }
 
     @Override

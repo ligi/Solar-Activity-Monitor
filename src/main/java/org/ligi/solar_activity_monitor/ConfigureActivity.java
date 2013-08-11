@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.widget.RemoteViews;
 
 /**
- * 2012 Marcus -ligi- Bueschleb
+ * Activity to show some introduction
  */
 public class ConfigureActivity extends Activity {
 

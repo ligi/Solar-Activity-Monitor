@@ -11,7 +11,7 @@ import android.net.Uri;
 import android.widget.RemoteViews;
 
 /**
- * 2012 Marcus -ligi- Bueschleb
+ * the base widget where the text and the icon widget inherit from
  */
 public abstract class SAMBaseWidget extends AppWidgetProvider {
 
@@ -32,10 +32,9 @@ public abstract class SAMBaseWidget extends AppWidgetProvider {
         this.context = context;
         long last_timestamp = getSharedPrefs().getLong("last_fetch", -1);
 
-        if (last_timestamp == -1 || Math.abs(System.currentTimeMillis() - last_timestamp) > LAST_GOOD_TIMEOUT) // 1h
+        if (last_timestamp == -1 || Math.abs(System.currentTimeMillis() - last_timestamp) > LAST_GOOD_TIMEOUT) { // 1h
             new UpdateTask(context).execute();
-
-
+        }
     }
 
     private SharedPreferences getSharedPrefs() {
@@ -54,10 +53,11 @@ public abstract class SAMBaseWidget extends AppWidgetProvider {
         @Override
         protected void onPostExecute(Integer result) {
 
-            if ((result == null) || result < 0)
+            if ((result == null) || result < 0) {
                 getSharedPrefs().edit().putLong("last_fetch", -1).commit();
-            else
+            } else {
                 getSharedPrefs().edit().putLong("last_fetch", System.currentTimeMillis()).commit();
+            }
 
             ComponentName watchWidget = getComponent(ctx);
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(ctx);

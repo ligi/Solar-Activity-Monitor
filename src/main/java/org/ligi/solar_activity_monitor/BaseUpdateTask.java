@@ -11,8 +11,6 @@ import java.net.URLConnection;
 
 /**
  * task to fetch the current Planetary Ap Value
- * <p/>
- * 2012 Marcus -ligi- Bueschleb
  */
 public class BaseUpdateTask extends AsyncTask<Void, Void, Integer> {
 
