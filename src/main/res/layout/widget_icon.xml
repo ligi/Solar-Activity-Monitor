@@ -8,10 +8,10 @@
 
     <ImageView
             android:id="@+id/kp_number_ico"
+            android:src="@drawable/ic_menu_refresh"
             android:layout_width="72dp"
             android:layout_height="72dp"
             android:layout_gravity="center"
             android:contentDescription="@string/icon"/>
-
 
 </LinearLayout>
