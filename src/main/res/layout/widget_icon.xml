@@ -3,14 +3,13 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
-              android:id="@+id/widget_layout"
-        >
+              android:id="@+id/widget_layout">
 
     <ImageView
             android:id="@+id/kp_number_ico"
             android:src="@drawable/ic_menu_refresh"
-            android:layout_width="72dp"
-            android:layout_height="72dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
             android:contentDescription="@string/icon"/>
 
