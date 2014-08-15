@@ -6,9 +6,8 @@ android:
 
 jdk: oraclejdk7
 
-env:
-  global:
-    - ANDROID_SDK_VERSION="r23.0.2"
+script:
+ gradle clean build
 
 notifications:
   email: true
