@@ -3,7 +3,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.12.2'
+        classpath 'com.android.tools.build:gradle:0.14.1'
         classpath 'com.jakewharton.sdkmanager:gradle-plugin:0.12.0'
     }
 }
@@ -12,14 +12,14 @@ apply plugin: 'android-sdk-manager'
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 20
-    buildToolsVersion "20"
+    compileSdkVersion 21
+    buildToolsVersion "21"
 
     defaultConfig {
         versionCode 100
         versionName "1.0.0"
         minSdkVersion 7
-        targetSdkVersion 20
+        targetSdkVersion 21
         applicationId "org.ligi.solar_activity_monitor"
     }
 
