@@ -3,7 +3,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.14.1'
+        classpath 'com.android.tools.build:gradle:1.0.0-rc1'
         classpath 'com.jakewharton.sdkmanager:gradle-plugin:0.12.0'
     }
 }
@@ -13,7 +13,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 21
-    buildToolsVersion "21"
+    buildToolsVersion "21.1.1"
 
     defaultConfig {
         versionCode 100
@@ -25,11 +25,12 @@ android {
 
     buildTypes {
         release {
-            runProguard false
             proguardFile 'proguard-project.txt'
             applicationVariants.all { variant ->
-                def file = variant.outputFile
-                variant.outputFile = new File(file.parent, file.name.replace(".apk", "-" + defaultConfig.versionName + ".apk"))
+                variant.outputs.each { output ->
+                    def file = output.outputFile
+                    output.outputFile = new File(file.parent, file.name.replace(".apk", "-" + defaultConfig.versionName + ".apk"))
+                }
             }
         }
     }
